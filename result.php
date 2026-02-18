@@ -111,11 +111,11 @@ require_once __DIR__ . '/vite.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>おみくじ結果 - <?= htmlspecialchars($selectedFortune['rank'], ENT_QUOTES, 'UTF-8') ?></title>
-  <?= vite_head('src/pages/result.js') ?>
+  <?= Vite::head('src/pages/result.js') ?>
 </head>
 <body>
   <div id="app" data-fortune="<?= htmlspecialchars($fortuneJson, ENT_QUOTES, 'UTF-8') ?>"></div>
 
-  <?= vite_body('src/pages/result.js') ?>
+  <?= Vite::body('src/pages/result.js') ?>
 </body>
 </html>
