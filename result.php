@@ -103,7 +103,7 @@ foreach ($fortunes as $index => $fortune) {
 }
 
 $fortuneJson = json_encode($selectedFortune, JSON_UNESCAPED_UNICODE);
-$isDev = getenv('VITE_DEV') === 'true';
+require_once __DIR__ . '/vite.php';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -111,19 +111,11 @@ $isDev = getenv('VITE_DEV') === 'true';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>おみくじ結果 - <?= htmlspecialchars($selectedFortune['rank'], ENT_QUOTES, 'UTF-8') ?></title>
-  <?php if ($isDev): ?>
-  <script type="module" src="http://localhost:5173/@vite/client"></script>
-  <?php else: ?>
-  <link rel="stylesheet" href="/dist/assets/result.css">
-  <?php endif; ?>
+  <?= vite_head('src/pages/result.js') ?>
 </head>
 <body>
   <div id="app" data-fortune="<?= htmlspecialchars($fortuneJson, ENT_QUOTES, 'UTF-8') ?>"></div>
 
-  <?php if ($isDev): ?>
-  <script type="module" src="http://localhost:5173/src/pages/result.js"></script>
-  <?php else: ?>
-  <script type="module" src="/dist/assets/result.js"></script>
-  <?php endif; ?>
+  <?= vite_body('src/pages/result.js') ?>
 </body>
 </html>
